@@ -3,10 +3,13 @@ pipeline {
 
     stages {
         stage('Build') {
-            steps {
-                script {
-                    echo "Building the application..."
-                    sh "make -C main clean && make -C main hello_exec"
+    steps {
+        script {
+            echo "Building the application..."
+            sh """
+                make -C main clean   # Delete old binaries
+                make -C main hello_exec  # Compile fresh
+            """
                 }
             }
         }
